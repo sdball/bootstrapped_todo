@@ -1,24 +1,6 @@
 <h1>Todo</h1>
-
-<p>
-  <b>Task</b><br>
-  <%= @todo.task %>
-</p>
-
-<p>
-  <b>Description</b><br>
-  <%= @todo.description %>
-</p>
-
-<p>
-  <b>Complete</b><br>
-  <%= @todo.complete %>
-</p>
-
-<p>
-  <b>Due at</b><br>
-  <%= @todo.due_at %>
-</p>
+<h2><%= @todo.task %></h2>
+<p><%= @todo.description %></p>
 
 <div class="form-actions">
   <%= link_to 'Back', todos_path, :class => 'btn'  %>
