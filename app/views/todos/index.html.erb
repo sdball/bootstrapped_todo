@@ -2,7 +2,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>ID</th>
       <th>Task</th>
       <th>Created at</th>
       <th>Actions</th>
@@ -11,7 +10,6 @@
   <tbody>
     <% @todos.each do |todo| %>
       <tr>
-        <td><%= todo.id %></td>
         <td><%= link_to todo.task, todo_path(todo) %></td>
         <td><%= todo.created_at %></td>
         <td>
