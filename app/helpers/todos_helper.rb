@@ -6,6 +6,8 @@ module TodosHelper
     else
       if todo.due_today?
         labels << '<span class="label label-warning">Due Today</span>'
+      elsif todo.overdue?
+        labels << '<span class="label label-important">Overdue</span>'
       end
     end
     raw labels.join(' ')

@@ -19,4 +19,10 @@ describe "Todos integration" do
     visit todo_path(todo)
     page.text.must_include "Complete"
   end
+
+  it "labels tasks that are overdue" do
+    todo = Todo.create({task: "Test Task", due_at: 3.days.ago})
+    visit todo_path(todo)
+    page.text.must_include "Overdue"
+  end
 end
