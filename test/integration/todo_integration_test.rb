@@ -13,4 +13,10 @@ describe "Todos integration" do
     visit todo_path(todo)
     page.text.must_include "Due Today"
   end
+
+  it "labels tasks that are complete" do
+    todo = Todo.create({task: "It's done", complete: true})
+    visit todo_path(todo)
+    page.text.must_include "Complete"
+  end
 end
