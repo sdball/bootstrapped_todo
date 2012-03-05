@@ -2,10 +2,10 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Todo</legend>
 
-    <%= f.input :name %>
-    <%= f.input :description %>
+    <%= f.input :name, input_html: { class: 'span6'} %>
+    <%= f.input :description, input_html: { class: 'span6'} %>
     <%= f.input :complete %>
-    <%= f.input :due_at %>
+    <%= f.input :due_at, input_html: { class: 'span1' } %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
