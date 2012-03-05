@@ -1,0 +1,26 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th class="span5">Task</th>
+      <th class="span3">Due</th>
+      <th class="span2">Status</th>
+      <th class="span2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% todos.each do |todo| %>
+      <tr>
+        <td><%= link_to todo.task, todo_path(todo) %></td>
+        <td><%= todo.due_at %></td>
+        <td><%= task_labels(todo) %></td>
+        <td>
+          <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+          <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
+            <i class="icon-remove-sign icon-white"></i>
+            Delete
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

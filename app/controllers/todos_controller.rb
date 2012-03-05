@@ -2,11 +2,12 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
+    @active = Todo.active
+    @complete = Todo.complete
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @todos }
+      format.json { render json: {active: @active, complete: @complete} }
     end
   end
 

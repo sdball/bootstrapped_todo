@@ -1,24 +1,21 @@
-<h1>Todos</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Task</th>
-      <th>Created at</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @todos.each do |todo| %>
-      <tr>
-        <td><%= link_to todo.task, todo_path(todo) %></td>
-        <td><%= todo.created_at %></td>
-        <td>
-          <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="page-header">
+  <h1>Todo List</h1>
+</div>
 
-<%= link_to 'New', new_todo_path, :class => 'btn btn-primary' %>
+<div class="well">
+  <%= link_to new_todo_path, :class => 'btn small inline btn-primary' do %>
+    <i class="icon-plus-sign icon-white"></i>
+    New Todo
+  <% end %>
+</div>
+
+<section id="active">
+  <h2>Active</h2>
+  <%= render partial: 'table', locals: { todos: @active } %>
+</section>
+
+<section id="complete">
+  <h2>Complete</h2>
+  <%= render partial: 'table', locals: { todos: @complete } %>
+</section>
+
