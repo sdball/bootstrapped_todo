@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305183221) do
+ActiveRecord::Schema.define(:version => 20120305201745) do
 
   create_table "todos", :force => true do |t|
-    t.string   "name"
+    t.string   "task"
     t.text     "description"
     t.boolean  "complete"
     t.datetime "due_at"

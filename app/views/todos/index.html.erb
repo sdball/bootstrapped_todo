@@ -3,7 +3,7 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Name</th>
+      <th>Task</th>
       <th>Created at</th>
       <th>Actions</th>
     </tr>
@@ -12,7 +12,7 @@
     <% @todos.each do |todo| %>
       <tr>
         <td><%= todo.id %></td>
-        <td><%= link_to todo.name, todo_path(todo) %></td>
+        <td><%= link_to todo.task, todo_path(todo) %></td>
         <td><%= todo.created_at %></td>
         <td>
           <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
