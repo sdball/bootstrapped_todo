@@ -8,3 +8,6 @@ class IntegrationTest < MiniTest::Spec
   include Capybara::DSL
   register_spec_type(/integration$/, self)
 end
+
+Turn.config.format = :outline
+Turn.config.natural = true
