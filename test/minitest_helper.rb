@@ -9,5 +9,5 @@ class IntegrationTest < MiniTest::Spec
   register_spec_type(/integration$/, self)
 end
 
-Turn.config.format = :outline
+Turn.config.format = :pretty
 Turn.config.natural = true
