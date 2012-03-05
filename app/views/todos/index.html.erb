@@ -1,29 +1,26 @@
-<h1>Listing todos</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Complete</th>
-    <th>Due at</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @todos.each do |todo| %>
-  <tr>
-    <td><%= todo.name %></td>
-    <td><%= todo.description %></td>
-    <td><%= todo.complete %></td>
-    <td><%= todo.due_at %></td>
-    <td><%= link_to 'Show', todo %></td>
-    <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-    <td><%= link_to 'Destroy', todo, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
+<h1>Todos</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Created at</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+        <td><%= todo.id %></td>
+        <td><%= link_to todo.name, todo_path(todo) %></td>
+        <td><%= todo.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Todo', new_todo_path %>
+<%= link_to 'New', new_todo_path, :class => 'btn btn-primary' %>

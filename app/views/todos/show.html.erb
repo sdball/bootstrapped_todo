@@ -1,25 +1,27 @@
-<p id="notice"><%= notice %></p>
+<h1>Todo</h1>
 
 <p>
-  <b>Name:</b>
+  <b>Name</b><br>
   <%= @todo.name %>
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>Description</b><br>
   <%= @todo.description %>
 </p>
 
 <p>
-  <b>Complete:</b>
+  <b>Complete</b><br>
   <%= @todo.complete %>
 </p>
 
 <p>
-  <b>Due at:</b>
+  <b>Due at</b><br>
   <%= @todo.due_at %>
 </p>
 
-
-<%= link_to 'Edit', edit_todo_path(@todo) %> |
-<%= link_to 'Back', todos_path %>
+<div class="form-actions">
+  <%= link_to 'Back', todos_path, :class => 'btn'  %>
+  <%= link_to 'Edit', edit_todo_path(@todo), :class => 'btn' %>
+  <%= link_to 'Delete', todo_path(@todo), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>
