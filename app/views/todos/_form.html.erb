@@ -5,7 +5,7 @@
     <%= f.input :task, input_html: { class: 'span6'} %>
     <%= f.input :description, input_html: { class: 'span6'} %>
     <%= f.input :complete %>
-    <%= f.input :due_at, input_html: { class: 'span1' } %>
+    <%= f.input :due_at, input_html: { class: 'span1' }, ampm: true, start_year: DateTime.now.year %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
