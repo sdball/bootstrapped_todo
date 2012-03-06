@@ -17,7 +17,7 @@
       <% @active.each do |todo| %>
         <tr>
           <td><%= todo.task %></td>
-          <td><%= time_tag todo.due_at %></td>
+          <td><% if todo.due_at %><%= time_tag todo.due_at %><% end %></td>
           <td><%= task_labels(todo) %></td>
           <td>
             <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
