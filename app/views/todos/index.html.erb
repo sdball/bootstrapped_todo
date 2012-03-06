@@ -2,20 +2,60 @@
   <h1>Todo List</h1>
 </div>
 
-<div class="well">
-  <%= link_to new_todo_path, :class => 'btn small inline btn-primary' do %>
-    <i class="icon-plus-sign icon-white"></i>
-    New Todo
-  <% end %>
-</div>
-
 <section id="active">
-  <h2>Active</h2>
-  <%= render partial: 'table', locals: { todos: @active } %>
+  <h2>Active <%= link_to new_todo_path, :class => 'btn btn-mini btn-primary' do %><i class="icon-plus-sign icon-white"></i> New Todo<% end %></h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="span5">Task</th>
+        <th class="span3">Due</th>
+        <th class="span2">Status</th>
+        <th class="span2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @active.each do |todo| %>
+        <tr>
+          <td><%= link_to todo.task, todo_path(todo) %></td>
+          <td><% if todo.due_at %>in <%= distance_of_time_in_words_to_now todo.due_at %><% end %></td>
+          <td><%= task_labels(todo) %></td>
+          <td>
+            <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+            <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
+              <i class="icon-remove-sign icon-white"></i>
+              Delete
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </section>
 
 <section id="complete">
-  <h2>Complete</h2>
-  <%= render partial: 'table', locals: { todos: @complete } %>
+  <h2>Complete <%= link_to '', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge Completed<% end %></h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="span10">Task</th>
+        <th class="span2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @complete.each do |todo| %>
+        <tr>
+          <td><del><%= link_to todo.task, todo_path(todo) %></del></td>
+          <td>
+            <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+            <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
+              <i class="icon-remove-sign icon-white"></i>
+              Delete
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </section>
 
