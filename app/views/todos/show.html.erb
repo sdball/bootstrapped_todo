@@ -1,6 +1,9 @@
 <h1>Todo</h1>
 <h2><%= @todo.task %> <%= task_labels(@todo) %></h2>
 <p><%= @todo.description %></p>
+<% if @todo.due_at %>
+  <p><strong>Due:</strong> <%= @todo.due_at %></p>
+<% end %>
 
 <div class="form-actions">
   <%= link_to 'Back', todos_path, :class => 'btn'  %>
