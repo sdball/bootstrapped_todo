@@ -16,7 +16,7 @@
     <tbody>
       <% @active.each do |todo| %>
         <tr>
-          <td><%= link_to todo.task, todo_path(todo) %></td>
+          <td><%= todo.task %></td>
           <td><% if todo.due_at %>in <%= distance_of_time_in_words_to_now todo.due_at %><% end %></td>
           <td><%= task_labels(todo) %></td>
           <td>
@@ -45,7 +45,7 @@
     <tbody>
       <% @complete.each do |todo| %>
         <tr>
-          <td><del><%= link_to todo.task, todo_path(todo) %></del></td>
+          <td><del><%= todo.task %></del></td>
           <td>
             <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
             <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
