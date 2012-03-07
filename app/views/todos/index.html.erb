@@ -7,7 +7,7 @@
     <h2>Active</h2>
     <p>No tasks have been added yet.</p>
   <% else %>
-    <h2>Active <%= link_to new_todo_path, :class => 'btn btn-mini btn-primary' do %><i class="icon-plus-sign icon-white"></i> New Todo<% end %></h2>
+    <h2>Active <%= link_to new_todo_path, :class => 'btn btn-mini btn-primary' do %><i class="icon-plus-sign icon-white"></i> New todo<% end %></h2>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -42,7 +42,7 @@
     <h2>Complete</h2>
     <p>No tasks have been completed yet.</p>
   <% else %>
-    <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge<% end %></h2>
+    <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge completed todos<% end %></h2>
     <table class="table table-striped">
       <thead>
         <tr>
