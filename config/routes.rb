@@ -1,4 +1,5 @@
 BootstrappedTodo::Application.routes.draw do
+  match 'todos/purge_completed' => 'todos#purge_completed', :as => :purge_completed_todos
   resources :todos
 
   # The priority is based upon order of creation:

@@ -81,4 +81,12 @@ class TodosController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def purge_completed
+    Todo.complete.each { |todo| todo.destroy }
+    respond_to do |format|
+      format.html { redirect_to todos_url }
+      format.json { head :no_content }
+    end
+  end
 end

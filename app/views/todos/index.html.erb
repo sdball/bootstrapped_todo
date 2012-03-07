@@ -3,59 +3,68 @@
 </div>
 
 <section id="active">
-  <h2>Active <%= link_to new_todo_path, :class => 'btn btn-mini btn-primary' do %><i class="icon-plus-sign icon-white"></i> New Todo<% end %></h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="span5">Task</th>
-        <th class="span3">Due</th>
-        <th class="span2">Status</th>
-        <th class="span2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @active.each do |todo| %>
+  <% if @active.empty? %>
+    <h2>Active</h2>
+    <p>No tasks have been added yet.</p>
+  <% else %>
+    <h2>Active <%= link_to new_todo_path, :class => 'btn btn-mini btn-primary' do %><i class="icon-plus-sign icon-white"></i> New Todo<% end %></h2>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><%= todo.task %></td>
-          <td><% if todo.due_at %><%= time_tag todo.due_at %><% end %></td>
-          <td><%= task_labels(todo) %></td>
-          <td>
-            <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
-            <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
-              <i class="icon-remove-sign icon-white"></i>
-              Delete
-            <% end %>
-          </td>
+          <th class="span5">Task</th>
+          <th class="span3">Due</th>
+          <th class="span2">Status</th>
+          <th class="span2">Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+        <% @active.each do |todo| %>
+          <tr>
+            <td><%= todo.task %></td>
+            <td><% if todo.due_at %><%= time_tag todo.due_at %><% end %></td>
+            <td><%= task_labels(todo) %></td>
+            <td>
+              <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+              <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
+                <i class="icon-remove-sign icon-white"></i>
+                Delete
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </section>
 
 <section id="complete">
-  <h2>Complete <%= link_to '', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge Completed<% end %></h2>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th class="span10">Task</th>
-        <th class="span2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @complete.each do |todo| %>
+  <% if @complete.empty? %>
+    <h2>Complete</h2>
+    <p>No tasks have been completed yet.</p>
+  <% else %>
+    <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge<% end %></h2>
+    <table class="table table-striped">
+      <thead>
         <tr>
-          <td><del><%= todo.task %></del></td>
-          <td>
-            <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
-            <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
-              <i class="icon-remove-sign icon-white"></i>
-              Delete
-            <% end %>
-          </td>
+          <th class="span10">Task</th>
+          <th class="span2">Actions</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @complete.each do |todo| %>
+          <tr>
+            <td><del><%= todo.task %></del></td>
+            <td>
+              <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+              <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
+                <i class="icon-remove-sign icon-white"></i>
+                Delete
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </section>
 
