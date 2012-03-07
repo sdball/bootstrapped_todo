@@ -9,7 +9,7 @@ describe "Todos integration" do
   end
 
   it "labels tasks that are due today" do
-    todo = Todo.create({task: "Do something today", due_at: DateTime.now})
+    todo = Todo.create({task: "Do something today", due_at: Date.today})
     visit todo_path(todo)
     page.text.must_include "Due Today"
   end
