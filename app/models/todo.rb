@@ -1,4 +1,6 @@
 class Todo < ActiveRecord::Base
+  belongs_to :project
+
   scope :active, where(complete: false).order('due_at DESC')
   scope :complete, where(complete: true).order('due_at DESC')
 

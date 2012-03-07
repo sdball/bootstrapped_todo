@@ -1,4 +1,6 @@
 BootstrappedTodo::Application.routes.draw do
+  resources :projects
+
   match 'todos/purge_completed' => 'todos#purge_completed', :as => :purge_completed_todos
   resources :todos
 
