@@ -19,7 +19,7 @@
       <tbody>
         <% @active.each do |todo| %>
           <tr>
-            <td><%= todo.task %></td>
+            <td><label class="checkbox todo active"><input type="checkbox" data-todo-id="<%= todo.id %>"> <%= todo.task %></label></td>
             <td><% if todo.due_at %><%= time_tag todo.due_at %><% end %></td>
             <td><%= task_labels(todo) %></td>
             <td>
