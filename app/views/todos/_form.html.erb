@@ -11,6 +11,7 @@
           end_year: Time.now.year + 1,
           include_blank: true %>
     <div class="form-actions">
+      <% if @project %><%= f.hidden_field :project_id, value: @project.id %><% end %>
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', todos_path, :class => 'btn' %>
     </div>

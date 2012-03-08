@@ -2,8 +2,14 @@ class TodosController < ApplicationController
   # GET /todos
   # GET /todos.json
   def index
-    @active = Todo.active
-    @complete = Todo.complete
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+      @active = @project.todos.active
+      @complete = @project.todos.complete
+    else
+      @active = Todo.active
+      @complete = Todo.complete
+    end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +31,9 @@ class TodosController < ApplicationController
   # GET /todos/new
   # GET /todos/new.json
   def new
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+    end
     @todo = Todo.new
 
     respond_to do |format|

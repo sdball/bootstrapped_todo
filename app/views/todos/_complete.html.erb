@@ -1,0 +1,30 @@
+<section id="complete">
+  <% if todos.empty? %>
+    <h2>Complete</h2>
+    <p>No tasks have been completed yet.</p>
+  <% else %>
+    <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge completed todos<% end %></h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th class="span10">Task</th>
+          <th class="span2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% todos.each do |todo| %>
+          <tr>
+            <td><del><%= todo.task %></del></td>
+            <td>
+              <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
+              <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
+                <i class="icon-remove-sign icon-white"></i>
+                Delete
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</section>

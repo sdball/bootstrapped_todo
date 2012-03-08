@@ -1,12 +1,8 @@
-<h1>Project</h1>
-
-<p>
-  <b>Title</b><br>
-  <%= @project.title %>
-</p>
+<div class="page-header">
+  <h1><%= @project.title %></h1>
+</div>
 
 <div class="form-actions">
-  <%= link_to 'Back', projects_path, :class => 'btn'  %>
   <%= link_to 'Edit', edit_project_path(@project), :class => 'btn' %>
-  <%= link_to 'Delete', project_path(@project), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+  <%= link_to 'Delete', project_path(@project), :method => 'delete', :confirm => 'Are you sure? This will also delete all todos in this project.', :class => 'btn btn-danger' %>
 </div>

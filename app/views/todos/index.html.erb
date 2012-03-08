@@ -1,69 +1,11 @@
 <div class="page-header">
-  <h1>Todo List</h1>
+  <% if @project %>
+    <h1><%= @project.title %></h1>
+  <% else %>
+    <h1>Todo List</h1>
+  <% end %>
 </div>
 
-<section id="active">
-  <h2>Active <%= link_to new_todo_path, :class => 'btn btn-mini btn-primary' do %><i class="icon-plus-sign icon-white"></i> New todo<% end %></h2>
-  <% if @active.empty? %>
-    <p>No tasks have been added yet.</p>
-  <% else %>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="span5">Task</th>
-          <th class="span3">Due</th>
-          <th class="span2">Status</th>
-          <th class="span2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @active.each do |todo| %>
-          <tr>
-            <td><label class="checkbox todo active"><input type="checkbox" data-todo-id="<%= todo.id %>"> <%= todo.task %></label></td>
-            <td><% if todo.due_at %><%= time_tag todo.due_at %><% end %></td>
-            <td><%= task_labels(todo) %></td>
-            <td>
-              <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
-              <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
-                <i class="icon-remove-sign icon-white"></i>
-                Delete
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</section>
-
-<section id="complete">
-  <% if @complete.empty? %>
-    <h2>Complete</h2>
-    <p>No tasks have been completed yet.</p>
-  <% else %>
-    <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge completed todos<% end %></h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th class="span10">Task</th>
-          <th class="span2">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @complete.each do |todo| %>
-          <tr>
-            <td><del><%= todo.task %></del></td>
-            <td>
-              <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
-              <%= link_to todo_path(todo), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' do %>
-                <i class="icon-remove-sign icon-white"></i>
-                Delete
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</section>
+<%= render partial: 'active', locals: { todos: @active } %>
+<%= render partial: 'complete', locals: { todos: @complete } %>
 
