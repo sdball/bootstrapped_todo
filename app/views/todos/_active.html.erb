@@ -27,7 +27,13 @@
           <tr>
             <td><label class="checkbox todo active"><input type="checkbox" data-todo-id="<%= todo.id %>"> <%= todo.task %></label></td>
             <td><% if todo.due_at %><%= time_tag todo.due_at %><% end %></td>
-            <% unless @project %><td><%= link_to todo.project.title, project_todos_path(todo.project) %></td><% end %>
+            <% unless @project %>
+              <% if todo.project %>
+                <td><%= link_to todo.project.title, project_todos_path(todo.project) %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+            <% end %>
             <td><%= task_labels(todo) %></td>
             <td>
               <%= link_to 'Edit', edit_todo_path(todo), :class => 'btn btn-mini' %>
