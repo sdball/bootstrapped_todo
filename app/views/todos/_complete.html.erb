@@ -3,7 +3,11 @@
     <h2>Complete</h2>
     <p>No tasks have been completed yet.</p>
   <% else %>
-    <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge completed todos<% end %></h2>
+    <% if @project %>
+      <h2>Complete <%= link_to project_purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks for this project. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge completed todos<% end %></h2>
+    <% else %>
+      <h2>Complete <%= link_to purge_completed_todos_path, :method => :delete, :confirm => 'This will delete all completed tasks. Are you sure?', :class => 'btn btn-mini btn-danger' do %><i class="icon-remove-sign icon-white"></i> Purge completed todos<% end %></h2>
+    <% end %>
     <table class="table table-striped">
       <thead>
         <tr>
