@@ -45,6 +45,7 @@
                 <li><%= link_to project.title, project_todos_path(project) %></li>
               <% end %>
             </ul>
+            <%= link_to new_project_path, class: 'btn btn-primary' do %><i class="icon-white icon-plus-sign"></i> New Project<% end %>
           </div><!--/.well -->
           <p>&copy; <%= link_to 'Stephen Ball', 'http://stephenballnc.com' %> 2012</p>
         </div><!--/span-->
