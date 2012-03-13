@@ -53,8 +53,10 @@ class TodosController < ApplicationController
     @todo = Todo.new(params[:todo])
 
     respond_to do |format|
+      project = Project.find(params[:todo][:project_id]) if params[:todo][:project_id]
+      success_url = project ? project_todos_url(project) : todos_url
       if @todo.save
-        format.html { redirect_to todos_url, notice: 'Todo was successfully created.' }
+        format.html { redirect_to success_url, notice: 'Todo was successfully created.' }
         format.json { render json: @todo, status: :created, location: @todo }
       else
         format.html { render action: "new" }
